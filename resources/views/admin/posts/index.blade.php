@@ -7,8 +7,8 @@
         <div class="col-8">
             <h1>Elenco di posts:</h1>
         </div>
-        <div>
-            <a href="{{ route('admin.posts.create') }}">Crea post</a>
+        <div class="col-4 text-left d-flex justify-content-end align-items-center ">
+            <a href="{{ route('admin.posts.create') }} " type="button" class="btn btn-primary btn-sm">Crea post</a>
         </div>
     </div>
 </div>
@@ -28,10 +28,21 @@
                 <tbody>
                     @foreach ($posts as $post)
                         <tr>
-                        <th scope="row">{{ $post->id }}</th>
-                        <td>{{ $post->title }}</td>
-                        <td>{{ $post->slug }}</td>
-                        <td>{{ $post->created_at }}</td>
+                            <th scope="row">{{ $post->id }}</th>
+                            <td>{{ $post->title }}</td>
+                            <td>{{ $post->slug }}</td>
+                            <td>{{ $post->created_at }}</td>
+                            <td>
+                                <a href="{{ route('admin.posts.show', $post) }}" type="button" class="btn btn-primary btn-sm">Apri</a>
+                            </td>
+                            <td>
+                                <form action="{{ route('admin.posts.destroy', $post) }}" method="POST">
+                                    @csrf
+                                    @method('DELETE')
+
+                                    <input type="submit" value="Elimina" class="btn btn-danger btn-sm">
+                                </form>
+                            </td>
                         </tr>            
                     @endforeach
                 </tbody>
