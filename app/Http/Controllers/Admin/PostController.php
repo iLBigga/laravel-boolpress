@@ -28,7 +28,7 @@ class PostController extends Controller
      */
     public function create()
     {
-        //
+        return view('admin.posts.create');
     }
 
     /**
@@ -39,7 +39,15 @@ class PostController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $params = $request->validate([
+            'title' => 'required|max:255|min:5',
+            'content' => 'required|max:1000',
+        ]);
+
+        $params['slug'] = str_replace(' ', '-', $params['title']);
+        $post = Post::create($params);
+
+        return redirect()->route('admin.posts.show', $post);
     }
 
     /**
