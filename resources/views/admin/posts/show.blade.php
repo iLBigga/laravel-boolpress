@@ -11,6 +11,14 @@
             @if ($post->category)
                 <p>Categoria: {{ $post->category->name }}</p>
             @endif
+            <div>
+                <p>Tags:</p>
+            </div>
+            <ul>
+                @foreach ($post->tags as $tag)
+                    <li>{{ $tag->name }}</li>
+                @endforeach
+            </ul>
             <ul>
                 <li>{{ $post->created_at }}</li>
             </ul>
