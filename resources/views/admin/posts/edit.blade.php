@@ -6,7 +6,7 @@
     <div class="row">
         <div class="col-12">
           <h2>Modifica post</h2>
-            <form action="{{ route('admin.posts.update', $post) }}" method="POST">
+            <form action="{{ route('admin.posts.update', $post) }}" method="POST" enctype="multipart/form-data">
                 @csrf
                 @method('PUT')
 
@@ -51,6 +51,20 @@
                     @error('content')
                     <div id="content" class="invalid-feedback">
                         {{ $message }}
+                    </div>
+                  @enderror
+                </div>
+
+                <div class="form-group">
+                  <label for="image">Immagine copertina</label>
+                  <div class="custom-file ">
+                    <input type="file" name="image" class="custom-file-input @error('image') is-invalid @enderror" id="image">
+                    <label class="custom-file-label" for="image">Segli immagine</label>
+                    <div class="invalid-feedback">Example invalid custom file feedback</div>
+                  </div>
+                  @error('image')
+                    <div id="image" class="invalid-feedback">
+                      {{ $message }}
                     </div>
                   @enderror
                 </div>

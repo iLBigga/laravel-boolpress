@@ -3,6 +3,7 @@
 namespace App;
 
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Str;
 
 class Post extends Model
@@ -10,7 +11,9 @@ class Post extends Model
     protected $fillable = [
         'title',
         'content',
-        'slug'
+        'slug',
+        'category_id',
+        'cover',
     ];
 
     public function category()
@@ -39,4 +42,5 @@ class Post extends Model
 
         return $slug;
     }
+
 }

@@ -7,6 +7,7 @@ use App\Http\Controllers\Controller;
 use App\Post;
 use App\Tag;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Storage;
 
 class PostController extends Controller
 {
@@ -44,22 +45,25 @@ class PostController extends Controller
     public function store(Request $request)
     {
 
-        // dd($request->all());
-
         $params = $request->validate([
             'title' => 'required|max:255|min:5',
             'content' => 'required',
             'category_id' => 'nullable|exists:categories,id',
             'tags' => 'exists:tags,id',
+            'image' => 'nullable|image|max:2048'
         ]);
 
         $params['slug'] = Post::getUniqueSlug($params['title']);
+
+        if(array_key_exists('image', $params)) {
+            $img_path = Storage::put('uploads', $params['image']);
+            $params['cover'] = $img_path;
+        }
 
         $post = Post::create($params);
 
         if(array_key_exists('tag', $params)){
             $tags = $params['tags'];
-            // dd($tags);
             $post->tags()->sync($tags);
         }
 
@@ -105,6 +109,7 @@ class PostController extends Controller
             'content' => 'required',
             'category_id' => 'nullable|exists:categories,id',
             'tags' => 'exists:tags,id',
+            'image' => 'nullable|image|max:2048'
         ]);
 
         if($params['title'] !== $post->title){
@@ -115,6 +120,11 @@ class PostController extends Controller
             $post->tags()->sync($params['tags']);
         } else {
             $post->tags()->sync([]);
+        }
+
+        if(array_key_exists('image', $params)) {
+            $img_path = Storage::put('uploads', $params['image']);
+            $params['cover'] = $img_path;
         }
 
         $post->update($params);
@@ -130,7 +140,12 @@ class PostController extends Controller
      */
     public function destroy(Post $post)
     {
+        $cover = $post->cover;
         $post->delete();
+
+        if($cover && Storage::exists($cover)){
+            Storage::delete($post->cover);
+        }
 
         return redirect()->route('admin.posts.index');
     }
