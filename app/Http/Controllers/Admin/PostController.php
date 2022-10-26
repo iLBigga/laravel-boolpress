@@ -56,6 +56,7 @@ class PostController extends Controller
         $params['slug'] = Post::getUniqueSlug($params['title']);
 
         if(array_key_exists('image', $params)) {
+            // $img_path = Storage::put('uploads', $request->file('image'));
             $img_path = Storage::put('uploads', $params['image']);
             $params['cover'] = $img_path;
         }
@@ -122,7 +123,7 @@ class PostController extends Controller
             $post->tags()->sync([]);
         }
 
-        if(array_key_exists('image', $params)) {
+        if(array_key_exists('image', $params) && $params['image'] !== $post->cover) {
             $img_path = Storage::put('uploads', $params['image']);
             $params['cover'] = $img_path;
         }
