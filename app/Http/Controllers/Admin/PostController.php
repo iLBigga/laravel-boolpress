@@ -59,7 +59,7 @@ class PostController extends Controller
 
         if(array_key_exists('image', $params)) {
             // $img_path = Storage::put('uploads', $request->file('image'));
-            $img_path = Storage::put('uploads', $params['image']);
+            $img_path = Storage::disk('images')->put('post_covers', $params['image']);
             $params['cover'] = $img_path;
         }
 
@@ -129,7 +129,7 @@ class PostController extends Controller
         }
 
         if(array_key_exists('image', $params) && $params['image'] !== $post->cover) {
-            $img_path = Storage::put('uploads', $params['image']);
+            $img_path = Storage::disk('images')->put('post_covers', $params['image']);
             $params['cover'] = $img_path;
         }
 

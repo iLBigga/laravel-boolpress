@@ -7,11 +7,12 @@
         <div class="col-8">
             <h1>{{ $post->title }}</h1>
             <p>{{ $post->slug }}</p>
+            {{ $post->cover_path }}
 
 
             @if ($post->cover)
             <div class="col-12">
-                <img src=" {{ asset('storage/' . $post->cover) }}" width="400" alt="">
+                <img src=" {{ $post->cover_path }}" width="400" alt="">
             </div> 
             @endif
             
