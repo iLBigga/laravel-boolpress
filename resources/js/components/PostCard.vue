@@ -1,11 +1,11 @@
 <template>
     <div>
-        <img v-if="post.cover" :src="post.cover_path" alt="">
+        <img v-if="post.cover" :src="post.cover_path" alt="" width="300">
         <div>
-            <h3>{{ post.title }}</h3>
+            <h2 class="font-bold">{{ post.title }}</h2>
             <p v-if="post.category">{{ post.category.name }}</p>
-            <ul>
-                <li v-for="tag in post.tags" :key="tag.id">
+            <ul class="flex gap-4 justify-center py-4">
+                <li class="bg-cyan-900 rounded-lg p-1" v-for="tag in post.tags" :key="tag.id">
                     {{ tag.name }}
                 </li>
             </ul>
