@@ -1,13 +1,13 @@
 !<template>
     <header>
-        <nav class="container">
+        <nav class="container mx-auto">
             <div class="flex justify-between items-center">
                 <div>
-                    Logo
+                    LOGO
                 </div>
                 <ul class="flex items-center gap-3">
                     <li v-for="(link, i) in navLinks" :key="i">
-                        <rounter-link :to="{name: link.name}">{{ link.text }}</rounter-link>
+                        <router-link :to="{ name: link.name }">{{ link.text }}</router-link>
                     </li>
                 </ul>
             </div>

@@ -21,7 +21,7 @@ const routes = [
     },
     {
         path: '/blog',
-        name: 'post.index',
+        name: 'posts.index',
         component: PostIndex,
     },
 ];
