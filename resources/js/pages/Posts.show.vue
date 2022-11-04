@@ -6,13 +6,22 @@
                 <h2 class="text-2xl">{{ post.title }}</h2>
                 <p class="py-10">{{ post.category?.name }}</p>
                 <p>{{ post.content }}</p>
+                <div class="flex justify-center pt-5">
+                    <Tags :tags="post.tags" />
+                </div>
             </div>
         </div>
     </div>
 </template>
 
 <script>
+
+import Tags from '../components/Tags.vue'
+
     export default {
+        components: {
+            Tags,
+        },
         props: ['slug'],
         data() {
             return {

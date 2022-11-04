@@ -1,6 +1,5 @@
 <template>
     <div>
-        <h1> Post </h1>
         <div class="container mx-auto">
             <div class="grid grid-cols-3 gap-4">
                 <router-link  v-for="post in posts" :key="post.id" :to="{ name: 'posts.show', params: { slug: post.slug }}">
