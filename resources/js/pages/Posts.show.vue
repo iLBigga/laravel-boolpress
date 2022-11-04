@@ -2,8 +2,10 @@
     <div class="container mx-auto">
         <div class="flex justify-evenly pt-20">
             <img v-if="post.cover_path" :src="post.cover_path" alt="">
-            <div>
-                <h2 class="bold">{{ post.title }}</h2>
+            <div class="text-center">
+                <h2 class="text-2xl">{{ post.title }}</h2>
+                <p class="py-10">{{ post.category?.name }}</p>
+                <p>{{ post.content }}</p>
             </div>
         </div>
     </div>

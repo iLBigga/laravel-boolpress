@@ -2291,6 +2291,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "render", function() { return render; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "staticRenderFns", function() { return staticRenderFns; });
 var render = function render() {
+  var _vm$post$category;
   var _vm = this,
     _c = _vm._self._c;
   return _c("div", {
@@ -2302,9 +2303,13 @@ var render = function render() {
       src: _vm.post.cover_path,
       alt: ""
     }
-  }) : _vm._e(), _vm._v(" "), _c("div", [_c("h2", {
-    staticClass: "bold"
-  }, [_vm._v(_vm._s(_vm.post.title))])])])]);
+  }) : _vm._e(), _vm._v(" "), _c("div", {
+    staticClass: "text-center"
+  }, [_c("h2", {
+    staticClass: "text-2xl"
+  }, [_vm._v(_vm._s(_vm.post.title))]), _vm._v(" "), _c("p", {
+    staticClass: "py-10"
+  }, [_vm._v(_vm._s((_vm$post$category = _vm.post.category) === null || _vm$post$category === void 0 ? void 0 : _vm$post$category.name))]), _vm._v(" "), _c("p", [_vm._v(_vm._s(_vm.post.content))])])])]);
 };
 var staticRenderFns = [];
 render._withStripped = true;
