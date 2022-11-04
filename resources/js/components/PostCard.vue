@@ -1,7 +1,6 @@
 <template>
-    <div>
-        <img v-if="post.cover" :src="post.cover_path" alt="" width="300">
-        <div>
+    <div class="flex flex-col">
+        <img v-if="post.cover" class="max-w-full" :src="post.cover_path">
             <h2 class="font-bold">{{ post.title }}</h2>
             <p v-if="post.category">{{ post.category.name }}</p>
             <ul class="flex gap-4 justify-center py-4">

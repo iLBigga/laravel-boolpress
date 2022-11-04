@@ -7,7 +7,6 @@
         <div class="col-8">
             <h1>{{ $post->title }}</h1>
             <p>{{ $post->slug }}</p>
-            {{ $post->cover_path }}
 
 
             @if ($post->cover)

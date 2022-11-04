@@ -2,8 +2,10 @@
     <div>
         <h1> Post </h1>
         <div class="container mx-auto">
-            <div class="grid grid-rows-4 grid-flow-col gap-4">
-                <PostCard class="text-center bg-zinc-500" v-for="post in posts" :key="post.id" :post="post"/>
+            <div class="grid grid-cols-3 gap-4">
+                <router-link  v-for="post in posts" :key="post.id" :to="{ name: 'posts.show', params: { slug: post.slug }}">
+                    <PostCard class="text-center bg-zinc-500" :post="post"/>
+                </router-link>
             </div>
         </div>
     </div>
